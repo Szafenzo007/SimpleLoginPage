@@ -2,6 +2,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { BeakerIcon } from '@heroicons/react/24/outline';
+import { TypeAnimation } from 'react-type-animation';
 
 // Sample user data (replace with your actual user data)
 const authorizedUsers = [
@@ -34,14 +37,14 @@ const LoginPage: React.FC = () => {
     
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-200 via-red-300 to-gray-900 dark:from-gray-900 dark:via-red-700 dark:to-black">
       <div className="bg-white p-8 rounded shadow-md w-96 text-center">
-        <div className='items-center flex justify-center'>
+        <div className='items-center flex justify-center flex-grow pb-5'>
         <Image src='/puff.png'
-        width={30}
-        height={24}
-        className='items-center mr-5 justify-center'
+        width={200}
+        height={200}
+        className='items-center mr-5 justify-center animate-accordion-down'
         alt=""
         />
-        <h1 className="text-4xl font-bold mb-4 text-yellow-500 hover:scale-105">Login</h1>
+       
         </div>
         <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
           <div>
@@ -67,13 +70,33 @@ const LoginPage: React.FC = () => {
           {errorMessage && (
             <div className="text-red-500 text-sm">{errorMessage}</div>
           )}
-          <button
+          <div className='items-center justify-center  p-2'>
+
+         
+          </div>
+          <Button
             type="button"
-            className="w-full bg-gradient-to-r from-red-500 to-yellow-500 text-white font-semibold py-2 rounded-full hover:from-red-600 hover:to-yellow-600 transition duration-300 transform hover:scale-105"
+            className="w-full h-32 text-xl bg-gradient-to-r from-red-500 to-yellow-500 text-white font-semibold py-2 rounded-full hover:from-red-600 hover:to-yellow-600 transition duration-300 transform hover:scale-105"
             onClick={authenticate}
           >
-            Log In
-          </button>
+           <TypeAnimation
+      sequence={[
+        // Same substring at the start will only be typed out once, initially
+        'Log In',
+        1000, // wait 1s before replacing "Mice" with "Hamsters"
+        'Log in',
+        1000,
+        'Log Now',
+        1000,
+        'Log in',
+        1000
+      ]}
+      wrapper="span"
+      speed={50}
+      style={{ fontSize: '2em', display: 'inline-block' }}
+      repeat={Infinity}
+    />
+          </Button>
         </form>
       </div>
     </div>
