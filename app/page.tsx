@@ -1,6 +1,24 @@
-import Image from 'next/image'
+'use client'
 
-export default function Home() {
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+
+const Home: React.FC = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Simulate checking if the user is authenticated (you can replace this with actual authentication code)
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+    // If the user is not authenticated, redirect to the login page
+    if (!isLoggedIn) {
+      router.push('/login');
+    }
+    
+  }, []);
+
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -111,3 +129,4 @@ export default function Home() {
     </main>
   )
 }
+export default Home;
